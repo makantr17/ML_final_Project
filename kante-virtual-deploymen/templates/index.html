@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" >
+        <title>ML API</title>
+        <link rel="stylesheet" href="">
+
+        <script>
+             function handle_classification(){
+                 var x = document.querySelector('#predict_desease');
+                 x.style.display = "none"
+                 document.querySelector('#classify-heart').style.display = "none";
+                 document.querySelector('#predict-diabete').style.display = "none";
+                 document.querySelector('#classify-model').style.display = "block";
+             }
+             function handle_heart(){
+                 var x = document.querySelector('#predict_desease');
+                 x.style.display = "none"
+                 document.querySelector('#classify-model').style.display = "none";
+                 document.querySelector('#predict-diabete').style.display = "none";
+                 document.querySelector('#classify-heart').style.display = "block";
+             }
+             function handle_diabete(){
+                 var x = document.querySelector('#predict_desease');
+                 x.style.display = "none"
+                 document.querySelector('#classify-model').style.display = "none";
+                 document.querySelector('#predict-diabete').style.display = "block";
+                 document.querySelector('#classify-heart').style.display = "none";
+             }
+             function handle_initialize(){
+                window.location.href = "/";
+             }
+        </script>
+    </head>
+
+    <body style="padding: 0; margin: 0; display: flex; flex-wrap: wrap;">
+        <div style=" padding: .5rem; width: 95%; align-items: center; display: flex; justify-content: space-between; flex-direction: row; flex-wrap: wrap;">
+            <h1 style="font-size: 25px; margin: 20px; font-family: 'verdana'">Predict Salary Analysis</h1>
+            <span>
+                <button onclick="handle_diabete()" style="padding: .5rem; background-color: green; height: 40px; border-radius: 5px; color: white; border: 1px solid rgb(236, 236, 236)">Predict Diabete</button>
+                <button onclick="handle_heart()" style="padding: .5rem; background-color: green; height: 40px; border-radius: 5px; color: white; border: 1px solid rgb(236, 236, 236)">Predict Selected</button>
+                <button onclick="handle_classification()" style="padding: .5rem; background-color: green; height: 40px; border-radius: 5px; color: white; border: 1px solid rgb(236, 236, 236)">
+                    New Desease
+                </button>
+                <button onclick="handle_initialize()" style="padding: .5rem; margin: 20px; background-color: orange; height: 40px; border-radius: 5px; color: white; border: 1px solid rgb(236, 236, 236)" type="submit" class="buttn">Initialize</button>
+                  
+            </span>
+        </div>
+        <div class="login" style="width: 100%; flex-wrap: wrap; padding-top: 1rem; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: rgb(236, 236, 236)">
+            <div class="predict_disease" id="predict_desease" style="display:block; height: 400px;">
+                  <h1 style="font-size: 25px; color: orange; margin: 20px; font-family: 'verdana'">Deep Learning Prediction App</h1>
+                  <p style="font-size: 14px; margin: 20px; font-family: 'verdana'; line-height:25px">This application will allows you to train different disease like Diabetes and Heart attacks. <br/>Further implementation will allow user to
+                    upload data about a desease and the app will preprocess data <br/> and train model with deep learning algorith.</p> 
+            </div> 
+            
+            <div class="predict-diabete" id="predict-diabete" style="display:none; width: 70%; min-height: 400px; font-family: 'verdana'">
+                <h2 style="font-size: 20px; margin:20px; color: orange">Diabete Prediction</h2>
+                <p style="font-size: 14px; margin: 20px;">Fill all the forms and make sure the data is integer values</p>
+                <form style="padding: 1rem;  display: flex; flex-direction: row; row-gap: .5rem; column-gap: .5rem; flex-wrap: wrap; align-items: center; justify-content: center; " class="submitPredict" action="/predict"  method="POST">
+                    <input style="padding: .5rem; width: 200px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="Pregnancies" placeholder="Pregnancies" required="required" /><br/>
+                    <input style="padding: .5rem; width: 200px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="Glucose" placeholder="Glucose" required="required" /><br/>
+                    <input style="padding: .5rem; width: 200px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="BloodPressure" placeholder="BloodPressure" required="required" /><br/>
+                    <input style="padding: .5rem; width: 200px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="SkinThickness" placeholder="SkinThickness" required="required" /><br/>
+                    <input style="padding: .5rem; width: 200px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="Insulin" placeholder="Insulin" required="required" /><br/>
+                    <input style="padding: .5rem; width: 200px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="BMI" placeholder="BMI" required="required" /><br/>
+                    <input style="padding: .5rem; width: 200px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="DiabetesPedigreeFunction" placeholder="DiabetesPedigreeFunction" required="required" /><br/>
+                    <input style="padding: .5rem; width: 200px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="Age" placeholder="Age" required="required" /><br/><br/>
+                    <div style="width: 100%; text-align: right;">
+                        <button style="padding: .5rem; background-color: orange; height: 40px; border-radius: 5px; color: white; border: 1px solid rgb(236, 236, 236)" type="submit" class="buttn">Predict</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="classify-model" id="classify-model" style="display:none">
+                <form style="display: flex; height:400px ; flex-wrap: wrap; flex-direction: column; row-gap: .5rem;">
+                    <h1 style="font-size: 20px; margin: 20px 0; font-family: 'verdana'">Train Your Model</h1>
+                    <input style="padding: .5rem; width: 250px; height:25px; background-color: white; border: 1px solid rgb(236, 236, 236)" type="file" />
+                    <button style="padding: .5rem; background-color: green; height: 40px; border-radius: 5px; color: white; border: 1px solid rgb(236, 236, 236)" type="submit">Upload</button>
+                </form> 
+            </div>
+
+            <div class="classify-heart" id="classify-heart" style="display:none; width: 70%; min-height: 400px; font-family: 'verdana'">
+                <h2 style="font-size: 20px; margin:20px; color: orange">Heart Disease Prediction</h2>
+                <p style="font-size: 14px; margin: 20px;">Fill all the forms and make sure the data is integer values,</p>
+                <form style="padding: 1rem;  display: flex; flex-direction: row; row-gap: .5rem; column-gap: .5rem; flex-wrap: wrap; align-items: center; justify-content: center;" action="/heart"  method="POST">
+                    <input style="padding: .5rem; width: 120px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="age" placeholder="age" required="required" /><br/>
+                    <input style="padding: .5rem; width: 120px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="sex" placeholder="sex" required="required" /><br/>
+                    <input style="padding: .5rem; width: 120px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="cp" placeholder="cp" required="required" /><br/>
+                    <input style="padding: .5rem; width: 120px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="trestbps" placeholder="trestbps" required="required" /><br/>
+                    <input style="padding: .5rem; width: 120px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="chol" placeholder="chol" required="required" /><br/><br/>
+                    <input style="padding: .5rem; width: 120px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="fbs" placeholder="fbs" required="required" /><br/>
+                    <input style="padding: .5rem; width: 120px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="restecg" placeholder="restecg" required="required" /><br/>
+                    <input style="padding: .5rem; width: 120px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="thalach" placeholder="thalach" required="required" /><br/>
+                    <input style="padding: .5rem; width: 120px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="exang" placeholder="exang" required="required" /><br/><br/>
+                    <input style="padding: .5rem; width: 120px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="oldpeak" placeholder="oldpeak" required="required" /><br/>
+                    <input style="padding: .5rem; width: 120px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="slope" placeholder="slope" required="required" /><br/>
+                    <input style="padding: .5rem; width: 120px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="ca" placeholder="ca" required="required" /><br/>
+                    <input style="padding: .5rem; width: 120px; height: 30px; border: 1px solid rgb(236, 236, 236)" type="text" name="thal" placeholder="thal" required="required" /><br/><br/>
+                    <div style="width: 100%; text-align: right;">
+                        <button style="padding: .5rem; background-color: orange; height: 40px; border-radius: 5px; color: white; border: 1px solid rgb(236, 236, 236)" type="submit" class="buttn">Predict</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <p style="font-size: 16px; margin: 20px; font-family: 'verdana'">Desease Predicted is: {{results.list}} and the result is {{results.text}}</p>
+            <!-- https://towardsdatascience.com/deploying-a-deep-learning-model-on-heroku-using-flask-and-python-769431335f66 -->
+    </body>
+</html>
